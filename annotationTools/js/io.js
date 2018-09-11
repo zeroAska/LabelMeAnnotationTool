@@ -4,7 +4,8 @@ function ReadXML(xml_file,SuccessFunction,ErrorFunction) {
   $.ajax({
     type: "GET",
     url: xml_file,
-    dataType: "xml",
+      dataType: "xml",
+      async: false,
     success: SuccessFunction,
     error: ErrorFunction
   });

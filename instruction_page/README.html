@@ -1,0 +1,174 @@
+<h1 id="amazonmechanicalturkhitinstructions">HIT instructions</h1>
+
+<h3>You will be shown an image. The task is to</h3>
+  <ul >
+  <li><font color="red">outline</font> all unlabeled objects, until the whole image is covered. Try to <font color="red">reduce object overlapping</font> as much as possible.</li>
+  <li><font color="red">provide a label</font> of each object you outlined. Available labels are given below</li>
+  </ul>
+
+
+
+<h2 id="classesweneed"><font color="blue">Available Labels (Don't forget small objects like pole/bike/traffic signs)</font></h2>
+
+<ul>
+  <li><p>road: road where vehicles move on.   </p></li>
+
+  <li><p>sidewalk: for pedestrians to walk  </p></li>
+
+  <li><p>vegetation: trees, vegetations that human cannot walk on  </p></li>
+
+  <li><p>grass: grass where people can walk on  </p></li>
+
+  <li><p>terran: mud    </p></li>
+
+  <li><p>pole:  for street lamps and other objects resemble that  </p></li>
+
+  <li><p>building: windows, walls, buildings    </p></li>
+
+  <li><p>vehicle: cars, vans, trucks    </p></li>
+
+  <li><p>human: pedestrians, or people on bikes  </p></li>
+
+  <li><p>bike: bikes, motocycles    </p></li>
+
+  <li><p>sky  </p></li>
+
+  <li><p>sign: traffic signs  </p></li>
+</ul>
+
+<h1 id="exampleofourclassanotations">Example of Accepted && Rejected anotations:</h1>
+<table width="500" border="1" cellpadding="5">
+  <tr>
+    <td> <h4><center><font color="blue">Accepted Results</font></center></h4> </td>
+    <td> <h4><center><font color="red">Rejected Results </font></center></h4></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">
+      <img src="figures/ok_result.png" alt="description here" width=500 />
+      <br />
+      Accepted: Everything is labeled. Borders are mostly aligned.
+    </td>
+
+    <td align="center" valign="center">
+      <img src="figures/bad_no_borders.png" width=500 alt="description here" />
+      <br />
+      Rejected: Borders of objects are not labeled.
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">
+      <img src="figures/35.png" alt="description here" width=500 />
+      <br />
+      Accpeted: Good Annotations. Everything is labeled accurately.
+    </td>
+
+    <td align="center" valign="center">
+      <img src="figures/bad_not_fully_annotated" alt="description here" width=500 />
+      <br />
+      Rejected: Parts of the image is not annotated (vegetation, a pole, road, a sidewalk)
+    </td>
+    
+  </tr>
+
+  <tr>
+    <td align="center" valign="center">
+      <img src="figures/40.png" alt="description here" width=500/>
+      <br />
+      Accpeted: Good Annotations. Everything is labeled accurately, including bikes
+    </td>
+
+    <td align="center" valign="center">
+      <img src="figures/bad_borders_not_accurate.png" alt="description here" width=500 />
+      <br />
+      Rejected: The borders are not very accurate. Some parts of the image are not annotated.
+    </td>
+    
+  </tr>
+  <tr>
+    <td align="center" valign="center">
+      <img src="figures/7.png" alt="description here" width=500 />
+      <br />
+      Accpeted: Good Annotation.
+    </td>
+
+    <td align="center" valign="center">
+      <img src="figures/overlapping.png" alt="description here" width=500/>
+      <br />
+      Rejected: Too much overlapping of different objects. 
+    </td>
+    
+  </tr>
+
+
+  </table>
+
+
+
+<!--
+
+
+
+
+
+<p><code>7.jpg</code> <br />
+  <img src="figures/7.png" alt="" />  </p>
+
+<p><code>35.jpg</code> <br />
+  <img src="figures/35.png" alt="" />  </p>
+
+<p><code>40.jpg</code> <br />
+  <img src="figures/40.png" alt="" />  </p>
+
+<p><code>165.jpg</code> <br />
+  <img src="figures/165.png" alt="" />  </p>
+
+<p><code>349.jpg</code> <br />
+  <img src="figures/349.png" alt="" />  </p>
+
+<h1 id="generalexamplesofgoodandbadannotations">General Examples of Bad Annotations</h1>
+
+<p><strong>Bad object labels:</strong></p>
+
+<p>The building is not entirely labeled. Make sure to scroll to view the entire object. <br />
+  <img src="figures/mt_example_bad1.jpg" alt="" /></p>
+
+<p>The same cloud is labeled twice. Please do not label an object that has already been labeled. <br />
+  <img src="figures/mt_example_bad2.jpg" alt="" /></p>
+
+<p>There are three people inside this polygon. Whenever possible, please label individual objects and follow closely their boundary. <br />
+  <img src="figures/mt_example_bad3.jpg" alt="" /></p>
+
+<h1 id="labelingguidelines">Labeling guidelines</h1>
+
+<p>The following are some recomendations for how to provide annotations that are as useful as possible.</p>
+
+<p><strong>View the entire image:</strong> Make sure that your browser occupies the entire screen and that you scroll to see the entire image. If you label an object on the edge of your browser, make sure to scroll so that the entire object is visible.</p>
+
+<p><strong>Follow the object outline:</strong> Click on top of the object boundary so that the polygon accurately delineates the object outline. The ideal outline should be good enough for somebody to recognize the object just by seeing the drawn polygon.</p>
+
+<p><strong>Labeling occluded objects:</strong> Sometimes objects will be only partially visible. This is especially true for regions like roads, buildings, etc., which become difficult to label when there are many occlusions. We recommend in these cases to complete the boundary as if they were not occluded.</p>
+
+<p><strong>Object naming:</strong> Use common English names for objects. Use a name that you think other people are likely to use to describe the same object. You can use several words to describe an object. Example object names: sky, tree, building, road, sidewalk, person, car, chair.</p>
+
+<p><img src="figures/labeling.jpg" alt="" /></p>
+
+<h1 id="advancedfeatures">Advanced features</h1>
+
+<p><strong>Delete segments:</strong> If you want to delete one segment of the polygon before finishing the polygon, press the <code>delete</code> key. Once the polygon is closed, you can not delete control points or add new segments, but you can modify the location of the control points.</p>
+
+<p><strong>Modify control points:</strong> Once you have finished a polygon, you can modify individual control points. If you click on top of the polygon, the control points will appear. You can select one of the control points (hold the left mouse button down) and move it to a new position. Then click anywhere in the image to deselect the polygon. This will also save the modified polygon.</p>
+
+<p><strong>Delete entire polygon:</strong> Select the polygon. You will have the option to delete the polygon. You can only edit polygons that you have entered before. You can not delete polygons by other users.</p>
+-->
+
+<h1> How to annotate an object? </h1>
+<p>The following steps describe how to label an object:</p>
+
+<p>1. Start by pressing the left mouse button at some point along the boundary of the object. <br />
+  2. Continue clicking along the boundary of the object to create a polygon. <br />
+  3. Once you have finished clicking along the boundary of the object, either click on the first point or press the right mouse button to complete the polygon. <br />
+  4. A window will now appear asking for the object's name. Enter the object's name and click the "Done" button.</p>
+
+<p><strong>cannon</strong> <br />
+  <img src="figures/cannon.jpg" alt="" />  </p>
+

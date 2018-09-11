@@ -17,6 +17,7 @@ my $image = $query->param("image");
 my $im_dir;
 my $im_file;
 if($mode eq "mt") {
+    #print $collection
     my $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
     
     if(!open(FP,$fname)) {
@@ -48,22 +49,22 @@ if($mode eq "i") {
 	print "Status: 404\n\n";
 	return;
     }
-    
+
     open(NUMLINES,"wc -l $fname |");
     my $numlines = <NUMLINES>;
     ($numlines,my $bar) = split(" DirLists",$numlines);
     close(NUMLINES);
-    
+
     my $line = int(rand($numlines))+1;
-    
+
     for(my $i=1; $i < $line; $i++) {
 	my $garbage = readline(FP);
     }
-    
+
     my $fileinfo = readline(FP);
     ($im_dir,$im_file) = split(",",$fileinfo);
     $im_file =~ tr/"\n"//d; # remove trailing newline
-    
+
     close(FP);
 }
 elsif($mode eq "c") {

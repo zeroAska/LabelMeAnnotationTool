@@ -310,22 +310,23 @@ function image(id) {
         this.DisplayWithContrast(this.contrast);
     }
 	this.DisplayWithContrast = function(alpha){
-		var data_im = this.ObtainImagePixels();
-        var data = data_im.data;
-		for (var i = 0; i < data.length; i+=4){
-			for (var j = 0; j < 3; j++){
-				var elem = data[i+j];
-				if (elem < alpha){
-					var elem_new = 128*(elem/alpha)
-				}
-				else {
-					var elem_new = 128*(1+(elem - alpha)/(255-alpha));
-				}
-				data[i+j] = elem_new;
-			}
+	    var data_im = this.ObtainImagePixels();
+            var data = data_im.data;
+	    for (var i = 0; i < data.length; i+=4){
+		for (var j = 0; j < 3; j++){
+		    var elem = data[i+j];
+		    if (elem < alpha){
+			var elem_new = 128*(elem/alpha)
+		    }
+		    else {
+			var elem_new = 128*(1+(elem - alpha)/(255-alpha));
+		    }
+		    data[i+j] = elem_new;
 		}
-        data_im.data = data;
-        main_media.im.getContext('2d').putImageData(data_im,0,0,0,0,main_media.width_curr, main_media.height_curr);
+	    }
+            data_im.data = data;
+            main_media.im.getContext('2d').putImageData(data_im,0,0,0,0,main_media.width_curr, main_media.height_curr);
+	    //main_media.im.getContext('2d').putImageData(data_im,50,50);
 
 	}
     

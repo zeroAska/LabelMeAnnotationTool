@@ -118,10 +118,10 @@ function handler() {
     this.EditBubbleDeleteButton = function () {
         var idx = select_anno.GetAnnoID();
 
-        if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, idx, 'username')))) && (!IsUserAdmin()) && (idx<num_orig_anno) && !action_DeleteExistingObjects) {
+        /*if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, idx, 'username')))) && (!IsUserAdmin()) && (idx<num_orig_anno) && !action_DeleteExistingObjects) {
             alert('You do not have permission to delete this polygon');
             return;
-        }
+        }*/
         
         if(idx>=num_orig_anno) {
             global_count--;

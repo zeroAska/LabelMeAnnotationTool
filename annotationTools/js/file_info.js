@@ -39,7 +39,7 @@ function file_info() {
             this.page_in_use = 1;
             var par_str = labelme_url.substring(idx+1,labelme_url.length);
             var isMT = false; // In MT mode?
-            var default_view_ObjList = false;
+            var default_view_ObjList = true;
             do {
                 idx = par_str.indexOf('&');
                 var par_tag;
@@ -73,6 +73,7 @@ function file_info() {
                 if(par_field=='collection') {
                     this.collection = par_value;
                 }
+		console.log('collection is ' + this.collection);
                 if(par_field=='folder') {
                     this.dir_name = par_value;
                 }
@@ -227,17 +228,27 @@ function file_info() {
             }
             if(this.mode=='mt') {
                 if(!this.mt_instructions) {
-                    if(mt_N=='inf') this.mt_instructions = 'Please label as many objects as you want in this image.';
-                    else if(mt_N==1) this.mt_instructions = 'Please label at least ' + mt_N + ' object in this image.';
-                    else this.mt_instructions = 'Please label at least ' + mt_N + ' objects in this image.';
+                    //if(mt_N=='inf')
+			this.mt_instructions = 'Please <font color="red">outline</font> all the instances so that <font color="red">the whole image is covered</font>. Make sure you read <a href="'+ MThelpPage + '">this</a> before you start. ';
+                    //else if(mt_N==1) this.mt_instructions = 'Please <font color="red">outline</font> at least ' + mt_N + ' objects . Read <a href="'+ MThelpPage + '">this</a> before you start. ';
+                    //else this.mt_instructions = 'Please label at least ' + mt_N + ' objects in this image. Read <a href="'+ MThelpPage + '">this</a> before you start. ';
                 }
                 if(mt_N=='inf') mt_N = 1;
+
                 
-                var html_str = '<table><tr><td><font size="4"><b>' + this.mt_instructions + '  Scroll down to see the entire image. &#160;&#160;&#160; </b></font></td><td><form action="' + externalSubmitURL + '"><input type="hidden" id="assignmentId" name="assignmentId" value="'+ this.assignmentId +'" /><input type="hidden" id="number_objects" name="number_objects" value="" /><input type="hidden" id="object_name" name="object_name" value="" /><input type="hidden" id="LMurl" name="LMurl" value="" /><input type="hidden" id="mt_comments" name="mt_comments" value="" /><input disabled="true" type="submit" id="mt_submit" name="Submit" value="Submit HIT" onmousedown="javascript:document.getElementById(\'mt_comments\').value=document.getElementById(\'mt_comments_textbox\').value;" /></form></td></tr></table>';
+                var html_str = '<table><tr><td><font size="3"><b>' + this.mt_instructions + ' &#160;&#160;&#160; </b></font></td><td><form action="' + externalSubmitURL + '"><input type="hidden" id="assignmentId" name="assignmentId" value="'+ this.assignmentId +'" /><input type="hidden" id="number_objects" name="number_objects" value="" /><input type="hidden" id="object_name" name="object_name" value="" /><input type="hidden" id="LMurl" name="LMurl" value="" /><input type="hidden" id="mt_comments" name="mt_comments" value="" /><input disabled="true" type="submit" id="mt_submit" name="Submit" value="Submit HIT (Click after you finish outlining all objects)" onmousedown="javascript:document.getElementById(\'mt_comments\').value=document.getElementById(\'mt_comments_textbox\').value;" /></form></td></tr>';
+
+		html_str = html_str + '<tr><td><font size="3"><b> If you want to revise your annotation of an object, click on it, and press the "Delete" or "Adjust Polygon" button </b></font></td></tr>'
+		
+		html_str = html_str + '<tr><td><font size="3" color="blue"><b> Available labels are: '+ classPatterns+  '.</b></font></td></tr>'
+
+
+
+		html_str = html_str + '</table>';
                 
 		$('#mt_submit_form').append(html_str);
                 
-                var html_str2 = '<font size="4"><b>Scroll up to see the entire image</b></font>&#160;&#160;&#160;<font size="3">(Optional) Do you wish to provide any feedback on this HIT?</font><br /><textarea id="mt_comments_textbox" name="mt_comments_texbox" cols="94" nrows="5" />';
+		var html_str2 = '<font size="4" ><b>Scroll up to see the entire image</b></font>&#160;&#160;&#160;<font size="3">(Optional) Do you wish to provide any feedback on this HIT?</font><br /><textarea id="mt_comments_textbox" name="mt_comments_texbox" cols="94" nrows="5" />';
 		$('#mt_feedback').append(html_str2);
                 
                 if(global_count >= mt_N) document.getElementById('mt_submit').disabled=false;
@@ -257,6 +268,7 @@ function file_info() {
     
     /** Gets collection name */
     this.GetCollection = function () {
+	console.log('file_info: collection is '+this.collection);
         return this.collection;
     };
     
@@ -292,7 +304,12 @@ function file_info() {
     
     /** Gets template path */
     this.GetTemplatePath = function () {
-        if(!this.dir_name) return 'annotationCache/XMLTemplates/labelme.xml';
+
+        if(!this.dir_name) {
+	    console.log("template path is labelme.xml");
+	    return 'annotationCache/XMLTemplates/labelme.xml';
+	}
+	console.log("template path is "+this.dir_name + ".xml");
         return 'annotationCache/XMLTemplates/' + this.dir_name + '.xml';
     };
     
@@ -405,21 +422,20 @@ function file_info() {
                 im_req.open("GET", url, true);
             }
         }
-	console.log('prefetching')
 	im_req.onload = function(e){
-		if(im_req.status==200) {
-		    dir_name = im_req.responseXML.getElementsByTagName("dir")[0].firstChild.nodeValue;
-		    im_name = im_req.responseXML.getElementsByTagName("file")[0].firstChild.nodeValue;
-		    path =  'Images/' + dir_name + '/' + im_name;
-		    var img1 = new Image()
-		    img1.src = path;
-		    img1.onload = function (){
-			console.log('preloaded');
-		    }
+	    if(im_req.status==200) {
+		dir_name = im_req.responseXML.getElementsByTagName("dir")[0].firstChild.nodeValue;
+		im_name = im_req.responseXML.getElementsByTagName("file")[0].firstChild.nodeValue;
+		path =  'Images/' + dir_name + '/' + im_name;
+		var img1 = new Image()
+		img1.src = path;
+		img1.onload = function (){
+		    console.log('preloaded');
 		}
-		else {
-		    alert('Fatal: there are problems with fetch_image.cgi');
-		}
+	    }
+	    else {
+		alert('Fatal: there are problems with fetch_image.cgi');
+	    }
 	}
 	im_req.send('');
     };

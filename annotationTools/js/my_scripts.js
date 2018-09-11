@@ -1,5 +1,11 @@
 // This file should be minimized and abstracted whenever possible.  
 // It is best to refrain from adding new variables/functions to this file.
+var LMbaseurl = 'https://' + window.location.host + window.location.pathname;
+var MThelpPage = 'instruction_page/README.html';
+var externalSubmitURL = 'https://www.mturk.com/mturk/externalSubmit';
+var externalSubmitURLsandbox = 'https://workersandbox.mturk.com/mturk/externalSubmit';
+var classPatterns='road|sidewalk|vegetation|grass|terran|pole|building|vehicle|human|bike|sky|sign';
+
 
 // Get the x position of the mouse event.
 function GetEventPosX(event) {
@@ -275,10 +281,10 @@ function unselectObjects() {
 function DeleteSelectedPolygon() {
   if(selected_poly == -1) return;
   
-  if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, selected_poly, 'username')))) && (!IsUserAdmin()) && (selected_poly<num_orig_anno) && !action_DeleteExistingObjects) {
-    alert('You do not have permission to delete this polygon');
-    return;
-  }
+//  if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, selected_poly, 'username')))) && (!IsUserAdmin()) && (selected_poly<num_orig_anno) && !action_DeleteExistingObjects) {
+//    alert('You do not have permission to delete this polygon');
+//    return;
+//  }
   
   if(LMgetObjectField(LM_xml, selected_poly, 'verified')) {
     StartEditEvent(selected_poly,null);

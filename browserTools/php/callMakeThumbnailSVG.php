@@ -1,0 +1,1 @@
+<div><svg height='64px' width='64px' ><image x='1' y='1' height='64px' width='64px' xlink:href='http://labelme2.csail.mit.edu/Release3.0/Thumbnails/users////'/></svg></div>

@@ -20,10 +20,10 @@ function StartEditEvent(anno_id,event) {
   }
   if (video_mode) oVP.Pause();
   if(event) event.stopPropagation();
-  if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, anno_id, 'username')))) && (!IsUserAdmin()) && (anno_id<num_orig_anno) && !action_RenameExistingObjects && !action_ModifyControlExistingObjects && !action_DeleteExistingObjects) {
+  /*if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, anno_id, 'username')))) && (!IsUserAdmin()) && (anno_id<num_orig_anno) && !action_RenameExistingObjects && !action_ModifyControlExistingObjects && !action_DeleteExistingObjects) {
     PermissionError();
     return;
-  }
+  }*/
   active_canvas = SELECTED_CANVAS;
   edit_popup_open = 1;
   

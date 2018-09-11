@@ -42,10 +42,10 @@ var adjust_event = null;
 function StartEditEvent(anno_id,event) {
   console.log('LabelMe: Starting edit event...');
   if(event) event.stopPropagation();
-  if((IsUserAnonymous() || (!IsCreator(AllAnnotations[anno_id].GetUsername()))) &amp;&amp; (!IsUserAdmin()) &amp;&amp; (anno_id&lt;num_orig_anno) &amp;&amp; !action_RenameExistingObjects &amp;&amp; !action_ModifyControlExistingObjects &amp;&amp; !action_DeleteExistingObjects) {
-    PermissionError();
-    return;
-  }
+  //if((IsUserAnonymous() || (!IsCreator(AllAnnotations[anno_id].GetUsername()))) &amp;&amp; (!IsUserAdmin()) &amp;&amp; (anno_id&lt;num_orig_anno) &amp;&amp; !action_RenameExistingObjects &amp;&amp; !action_ModifyControlExistingObjects &amp;&amp; !action_DeleteExistingObjects) {
+  //  PermissionError();
+  //  return;
+ // }
   active_canvas = SELECTED_CANVAS;
   edit_popup_open = 1;
   
@@ -242,10 +242,10 @@ function StartEditVideoEvent(polygon_id, anno_id,event) {
   object_annotation.polygon_id = polygon_id;
   console.log('LabelMe: Starting edit event...');
   if(event) event.stopPropagation();
-  if((IsUserAnonymous() || (!IsCreator(object_annotation.GetUsername()))) &amp;&amp; (!IsUserAdmin()) &amp;&amp; (anno_id&lt;num_orig_anno) &amp;&amp; !action_RenameExistingObjects &amp;&amp; !action_ModifyControlExistingObjects &amp;&amp; !action_DeleteExistingObjects) {
-    PermissionError();
-    return;
-  }
+  //if((IsUserAnonymous() || (!IsCreator(object_annotation.GetUsername()))) &amp;&amp; (!IsUserAdmin()) &amp;&amp; (anno_id&lt;num_orig_anno) &amp;&amp; !action_RenameExistingObjects &amp;&amp; !action_ModifyControlExistingObjects &amp;&amp; !action_DeleteExistingObjects) {
+ //   PermissionError();
+  //  return;
+  //}
   active_canvas = SELECTED_CANVAS;
   edit_popup_open = 1;
   

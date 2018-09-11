@@ -16,6 +16,7 @@ my $image = $query->param("image");
 
 my $im_dir;
 my $im_file;
+#print $collection.txt
 if($mode eq "mt") {
     my $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
     
