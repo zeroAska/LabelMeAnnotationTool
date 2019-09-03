@@ -290,16 +290,30 @@ function GetPopupFormEdit(anno) {
 
 // Shows the box to enter the object name
 function HTMLobjectBox(obj_name) {
-  var html_str="";
-
- 
-    
+    var html_str="";
+    var classes = classPatterns.split("|");
+    /*
   html_str += '<input name="objEnter" id="objEnter" type="text" style="width:220px;" tabindex="0" placeholder="Available Names: See above" pattern="'+classPatterns+ '"  value="'+obj_name+'" title="Enter the object\'s name here.\n Available names are ['+classPatterns+']" ';
   
   html_str += ' onkeyup="var c;if(event.keyCode)c=event.keyCode;if(event.which)c=event.which;if(c==13){';
   //html_str += 'console.log($(".ui-autocomplete.ui-widget:visible").length);';
+
+  */
+    html_str += "<select name=\"objEnter\" id=\"objEnter\" data-placeholder=\"Choose a class...\" class=\"select\" tabindex=\"1\" onkeyup=\"main_handler.SubmitEditLabel()};\"  >\n";
+    var j;
+    if (!obj_name) {
+	html_str += "<option value=\"\">--select here--</option>" ; 
+    }
+    for (j=0; j<classes.length; j++) {
+	if (obj_name && obj_name == classes[j])
+	    html_str += "<option selected=\"selected\" value=\"" + classes[j] + "\">"+ classes[j]+"</option>\n";
+	else
+	    html_str += "<option value=\"" + classes[j] + "\">"+ classes[j]+"</option>\n";
+
+    }
+    html_str += "</select>";
   // if obj_name is empty it means that the box is being created
-  if (obj_name=='') {
+/*  if (obj_name=='') {
     // If press enter, then submit; if press ESC, then delete:
     if (video_mode) html_str += 'main_media.SubmitObject()};if(c==27) main_handler.WhatIsThisObjectDeleteButton();" ';
     else html_str += 'main_handler.SubmitQuery()};if(c==27)main_handler.WhatIsThisObjectDeleteButton();" ';
@@ -322,7 +336,7 @@ function HTMLobjectBox(obj_name) {
     }
     html_str += '</select></datalist>';
   }
-  
+  */
   html_str += '<br />';
   
   return html_str;

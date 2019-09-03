@@ -1,5 +1,11 @@
 
-dataset=$1
+dataset=$1   # example: bash new_dataset.sh dec2
+             # not : bash new_dataset.sh dec2/
+
+if [[ -z "$dataset" ]]; then
+    echo "dataset is empty"
+    exit 1
+fi
 
 # step 0:
 mkdir Annotations/$dataset

@@ -4,7 +4,7 @@ var LMbaseurl = 'https://' + window.location.host + window.location.pathname;
 var MThelpPage = 'instruction_page/README.html';
 var externalSubmitURL = 'https://www.mturk.com/mturk/externalSubmit';
 var externalSubmitURLsandbox = 'https://workersandbox.mturk.com/mturk/externalSubmit';
-var classPatterns='road|sidewalk|vegetation|grass|terran|pole|building|vehicle|human|bike|sky|sign';
+var classPatterns='building|bike|grass|human|pole|road|sidewalk|sky|sign|stairs|terran|vegetation|vehicle|water';
 
 
 // Get the x position of the mouse event.
